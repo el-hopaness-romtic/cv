@@ -1,0 +1,64 @@
+input1000x250.txt {
+    < 5 processes
+    < Calculation time = 6 s
+    ---
+    > 1 processes
+    > Calculation time = 24 s
+}
+
+input1000x300.txt {
+    < 5 processes
+    < Calculation time = 9 s
+    ---
+    > 1 processes
+    > Calculation time = 31 s
+}
+
+input500x90.txt {
+    < 5 processes
+    < Calculation time = 1 s
+    ---
+    > 1 processes
+    > Calculation time = 4 s
+}
+
+input700x120.txt {
+    < 5 processes
+    < Calculation time = 2 s
+    ---
+    > 1 processes
+    > Calculation time = 8 s
+}
+
+input800x150.txt {
+    < 5 processes
+    < Calculation time = 3 s
+    ---
+    > 1 processes
+    > Calculation time = 12 s
+}
+
+input800x300.txt {
+    < 5 processes
+    < Calculation time = 6 s
+    ---
+    > 1 processes
+    > Calculation time = 25 s
+}
+
+input900x150.txt {
+    < 5 processes
+    < Calculation time = 4 s
+    ---
+    > 1 processes
+    > Calculation time = 13 s
+}
+
+input900x200.txt {
+    < 5 processes
+    < Calculation time = 5 s
+    ---
+    > 1 processes
+    > Calculation time = 18 s
+}
+

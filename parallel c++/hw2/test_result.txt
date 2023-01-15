@@ -1,0 +1,46 @@
+input180x130.txt {
+    < 5 threads
+    < Calculation time = 0 s
+    ---
+    > 1 threads
+    > Calculation time = 2 s
+}
+
+input250x100.txt {
+    < 5 threads
+    < Calculation time = 0 s
+    ---
+    > 1 threads
+    > Calculation time = 2 s
+}
+
+input450x150.txt {
+    < 5 threads
+    < Calculation time = 3 s
+    ---
+    > 1 threads
+    > Calculation time = 14 s
+}
+
+input500x200.txt {
+    < 5 threads
+    < Calculation time = 7 s
+    ---
+    > 1 threads
+    > Calculation time = 31 s
+}
+
+input700x250.txt {
+    < 5 threads
+    < Calculation time = 20 s
+    ---
+    > 1 threads
+    > Calculation time = 91 s
+}
+
+input80x130.txt {
+    < 5 threads
+    ---
+    > 1 threads
+}
+
