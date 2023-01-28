@@ -1,0 +1,7 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+   generate-unique-name: false
+   name: tacocloud
