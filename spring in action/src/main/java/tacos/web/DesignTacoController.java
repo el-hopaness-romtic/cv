@@ -7,11 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import tacos.Ingredient;
-import tacos.Ingredient.Type;
-import tacos.Taco;
-import tacos.TacoOrder;
 import tacos.data.IngredientRepository;
+import tacos.data.TacoRepository;
+import tacos.entity.Ingredient;
+import tacos.entity.Ingredient.Type;
+import tacos.entity.Taco;
+import tacos.entity.TacoOrder;
+import tacos.entity.TacoUDT;
 
 import java.util.stream.StreamSupport;
 
@@ -22,6 +24,7 @@ import java.util.stream.StreamSupport;
 @RequiredArgsConstructor
 public class DesignTacoController {
     private final IngredientRepository ingredientRepo;
+    private final TacoRepository tacoRepository;
 
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
@@ -63,8 +66,14 @@ public class DesignTacoController {
         if (errors.hasErrors()) {
             return "design";
         }
-        tacoOrder.addTaco(taco);
         log.info("Processing taco: {}", taco);
+        tacoRepository.save(taco);
+        tacoOrder.addTaco(convertToTacoUDT(taco));
+
         return "redirect:/orders/current";
+    }
+
+    private TacoUDT convertToTacoUDT(Taco taco) {
+        return new TacoUDT(taco.getName(), taco.getIngredients());
     }
 }
