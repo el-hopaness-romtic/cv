@@ -8,12 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import tacos.data.IngredientRepository;
-import tacos.data.TacoRepository;
 import tacos.entity.Ingredient;
 import tacos.entity.Ingredient.Type;
 import tacos.entity.Taco;
 import tacos.entity.TacoOrder;
-import tacos.entity.TacoUDT;
 
 import java.util.stream.StreamSupport;
 
@@ -24,7 +22,6 @@ import java.util.stream.StreamSupport;
 @RequiredArgsConstructor
 public class DesignTacoController {
     private final IngredientRepository ingredientRepo;
-    private final TacoRepository tacoRepository;
 
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
@@ -67,13 +64,8 @@ public class DesignTacoController {
             return "design";
         }
         log.info("Processing taco: {}", taco);
-        tacoRepository.save(taco);
-        tacoOrder.addTaco(convertToTacoUDT(taco));
+        tacoOrder.addTaco(taco);
 
         return "redirect:/orders/current";
-    }
-
-    private TacoUDT convertToTacoUDT(Taco taco) {
-        return new TacoUDT(taco.getName(), taco.getIngredients());
     }
 }
