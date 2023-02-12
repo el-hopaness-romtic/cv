@@ -3,8 +3,8 @@ package tacos.web;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
+import tacos.Ingredient;
 import tacos.data.IngredientRepository;
-import tacos.entity.Ingredient;
 
 @Component
 @RequiredArgsConstructor

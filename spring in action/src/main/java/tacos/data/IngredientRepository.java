@@ -1,8 +1,8 @@
 package tacos.data;
 
-import org.springframework.data.repository.CrudRepository;
-import tacos.entity.Ingredient;
+import org.springframework.data.jpa.repository.JpaRepository;
+import tacos.Ingredient;
 
 public interface IngredientRepository
-        extends CrudRepository<Ingredient, String> {
+        extends JpaRepository<Ingredient, String> {
 }
