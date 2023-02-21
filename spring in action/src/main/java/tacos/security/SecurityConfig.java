@@ -43,6 +43,7 @@ public class SecurityConfig {
                         .anyRequest().access(new WebExpressionAuthorizationManager("permitAll()"))
                 )
                 .formLogin().loginPage("/login").defaultSuccessUrl("/design")
+                .and().logout().logoutSuccessUrl("/")
                 .and().build();
     }
 }

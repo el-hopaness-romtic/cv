@@ -51,13 +51,16 @@
     <input type="text" th:field="*{ccExpiration}"/>
     <span class="validationError"
           th:if="${#fields.hasErrors('ccExpiration')}"
-          th:errors="*{ccExpiration}"></span>  <br/>
+          th:errors="*{ccExpiration}"></span> <br/>
     <label for="ccCVV">CVV: </label>
     <input type="text" th:field="*{ccCVV}"/>
     <span class="validationError"
           th:if="${#fields.hasErrors('ccCVV')}"
-          th:errors="*{ccCVV}"></span>  <br/>
+          th:errors="*{ccCVV}"></span> <br/>
     <input type="submit" value="Submit Order"/>
+</form>
+<form method="POST" th:action="@{/logout}" style="margin-top: 5px">
+    <input type="submit" value="Logout"/>
 </form>
 </body>
 </html>
