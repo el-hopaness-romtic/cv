@@ -13,6 +13,9 @@ import org.springframework.web.bind.support.SessionStatus;
 import tacos.TacoOrder;
 import tacos.data.OrderRepository;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 @Slf4j
 @Controller
 @RequestMapping("/orders")
@@ -32,6 +35,7 @@ public class OrderController {
         if (errors.hasErrors()) {
             return "orderForm";
         }
+        order.setPlacedAt(Timestamp.valueOf(LocalDateTime.now()));
         orderRepo.save(order);
         sessionStatus.setComplete();
 

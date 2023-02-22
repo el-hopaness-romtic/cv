@@ -33,6 +33,7 @@ public class TacoOrder {
     private String ccNumber;
     @Pattern(regexp = "^(0[1-9]|1[0-2])([\\/])([2-9][0-9])$", message = "Must be formatted MM/YY")
     private String ccExpiration;
+    @Column(name = "cc_cvv")
     @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
     private String ccCVV;
     @OneToMany(cascade = CascadeType.ALL)
