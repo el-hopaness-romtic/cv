@@ -4,20 +4,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
-
-import java.util.Arrays;
-
-import static java.util.Collections.singletonList;
+import tacos.data.UserRepository;
 
 @Configuration
 public class SecurityConfig {
@@ -27,15 +22,13 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
-        return new InMemoryUserDetailsManager(Arrays.asList(
-                new User(
-                        "buzz", encoder.encode("password"), singletonList(new SimpleGrantedAuthority("ROLE_USER"))
-                ),
-                new User(
-                        "woody", encoder.encode("password"), singletonList(new SimpleGrantedAuthority("ROLE_USER"))
-                )
-        ));
+    public UserDetailsService userDetailsService(UserRepository userRepo) {
+        return username -> {
+            tacos.User user = userRepo.findByUsername(username);
+            if (user != null) return user;
+
+            throw new UsernameNotFoundException("User '" + username + "' not found");
+        };
     }
 
     @Bean
@@ -47,7 +40,7 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/design", "/orders").access(new WebExpressionAuthorizationManager("hasRole('USER')"))
-                        .anyRequest().access(new WebExpressionAuthorizationManager("permitAll()"))
+                        .anyRequest().permitAll()
                 )
                 .csrf().ignoringRequestMatchers(mvcRequestMatcher).and()
                 .headers().frameOptions().sameOrigin().and()
