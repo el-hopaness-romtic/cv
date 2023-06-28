@@ -8,3 +8,22 @@ spring:
   data:
     rest:
       base-path: /data-api
+
+management:
+  info:
+    git:
+      mode: full
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+info:
+  contact:
+    email: support@tacocloud.com
+    phone: 822-625-6831
